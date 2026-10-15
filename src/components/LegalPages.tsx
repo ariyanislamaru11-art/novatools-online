@@ -55,7 +55,7 @@ export const LegalPages: React.FC<LegalPagesProps> = ({ page, lang }) => {
       )}
 
       {page === 'about' && (
-        <div className="space-y-6">
+        <div className="space-y-8">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-xs font-mono font-bold uppercase">
             <Sparkles className="w-4 h-4" />
             <span>About NovaTools</span>
@@ -67,7 +67,7 @@ export const LegalPages: React.FC<LegalPagesProps> = ({ page, lang }) => {
 
           <div className="p-8 rounded-3xl bg-slate-900 border border-slate-800 space-y-4 text-sm text-slate-300 leading-relaxed">
             <p className="text-base text-slate-200">
-              NovaTools was founded with a singular, resolute mission: <strong>80+ Powerful Tools. One Limitless Workspace. Free tools, less hassle, more possibilities.</strong>
+              NovaTools was created with a singular, resolute mission: <strong>80+ Powerful Tools. One Limitless Workspace. Free tools, less hassle, more possibilities.</strong>
             </p>
             <p>
               Too many online utilities are riddled with hidden subscriptions, fake download traps, sluggish server queues, and intrusive ads that compromise user privacy. NovaTools provides high-speed, genuinely functional utilities that execute right in your browser.
@@ -75,6 +75,45 @@ export const LegalPages: React.FC<LegalPagesProps> = ({ page, lang }) => {
             <p>
               Whether you need to convert high-res photos, sign or split PDF contracts, calculate loan EMIs, or test regular expressions, NovaTools gives you instant access without forcing registration or signups.
             </p>
+          </div>
+
+          {/* Our Story & Ownership Credit */}
+          <div className="p-8 rounded-3xl bg-gradient-to-br from-slate-900 via-slate-900 to-slate-950 border border-slate-800 space-y-6">
+            <div className="flex items-center gap-2 text-cyan-400 text-xs font-mono font-bold uppercase tracking-wider">
+              <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" />
+              <span>{lang === 'en' ? 'Our Story' : 'আমাদের গল্প'}</span>
+            </div>
+
+            <h2 className="text-2xl font-bold text-white tracking-tight">
+              {lang === 'en' ? 'Built by Aiyan × Ritu' : 'আইয়ান ও ঋতুর সমন্বিত প্রয়াস'}
+            </h2>
+
+            <div className="space-y-3 text-sm text-slate-300 leading-relaxed">
+              <p>
+                NovaTools is a digital workspace built around the goal of making everyday online tasks easier, faster, and more accessible. Rather than navigating dozens of separate websites with inconsistent quality, NovaTools brings essential file converters, PDF managers, text formatters, developer tools, and calculators into one seamless environment.
+              </p>
+              <p>
+                The platform is owned and created by <strong>Aiyan and Ritu</strong>, whose shared vision drives its development:
+              </p>
+            </div>
+
+            {/* Futuristic Owner Callout Card */}
+            <div className="p-6 rounded-2xl bg-slate-950/80 border border-slate-800/90 flex flex-col sm:flex-row items-center justify-between gap-6 text-center sm:text-left">
+              <div className="space-y-1">
+                <div className="text-xl sm:text-2xl font-extrabold tracking-tight">
+                  <span className="bg-gradient-to-r from-white via-cyan-200 to-cyan-400 bg-clip-text text-transparent">AIYAN</span>
+                  <span className="text-slate-400 mx-2.5 font-bold">×</span>
+                  <span className="bg-gradient-to-r from-white via-violet-200 to-violet-400 bg-clip-text text-transparent">RITU</span>
+                </div>
+                <p className="text-xs text-slate-400 font-medium">
+                  {lang === 'en' ? '“Two Minds. One Vision. Limitless Possibilities.”' : '“দুটি মন। এক অভিন্ন দৃষ্টিভঙ্গি। সীমাহীন সম্ভাবনা।”'}
+                </p>
+              </div>
+
+              <div className="shrink-0 px-4 py-2 rounded-xl bg-gradient-to-r from-cyan-500/10 via-slate-900 to-violet-500/10 border border-slate-700 text-xs font-mono font-bold text-slate-200">
+                Co-Owners &amp; Creators of NovaTools
+              </div>
+            </div>
           </div>
         </div>
       )}

@@ -27,6 +27,7 @@ import { GuidesView } from './components/GuidesView';
 import { LegalPages } from './components/LegalPages';
 import { SearchModal } from './components/SearchModal';
 import { AdSlot } from './components/AdSlot';
+import { OwnersSection } from './components/OwnersSection';
 import { TOOLS } from './data/tools';
 import { CATEGORIES } from './data/categories';
 import { ToolCategory } from './types';
@@ -497,6 +498,9 @@ export default function App() {
                 ))}
               </div>
             </section>
+
+            {/* I. Owners Section: The Minds Behind NovaTools */}
+            <OwnersSection lang={lang} />
 
           </div>
         )}
