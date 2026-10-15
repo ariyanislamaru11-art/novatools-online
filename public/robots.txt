@@ -1,0 +1,6 @@
+# robots.txt for NovaTools
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://novatools.app/sitemap.xml

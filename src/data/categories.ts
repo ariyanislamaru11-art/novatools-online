@@ -1,0 +1,49 @@
+import { CategoryDef } from '../types';
+
+export const CATEGORIES: CategoryDef[] = [
+  {
+    id: 'image',
+    title: 'Image Tools',
+    titleBn: 'ছবি রূপান্তর ও সম্পাদনা',
+    description: 'Convert, compress, resize, crop, remove metadata, and transform photos directly in your browser.',
+    descriptionBn: 'ব্রাউজারেই ছবি কনভার্ট, সাইজ ছোট, রিসাইজ, ক্রপ ও মেটাডাটা রিমুভ করুন।',
+    icon: 'ImageIcon',
+    gradient: 'from-cyan-500/20 via-blue-500/10 to-transparent border-cyan-500/30 text-cyan-400',
+  },
+  {
+    id: 'pdf',
+    title: 'PDF Tools',
+    titleBn: 'পিডিএফ টুলস ও রিডার',
+    description: 'Read, merge, split, rotate, number, watermark, organize, and convert PDF documents with complete privacy.',
+    descriptionBn: 'সম্পূর্ণ নিরাপদে পিডিএফ পড়ুন, যুক্ত করুন, পেজ আলাদা করুন এবং কনভার্ট করুন।',
+    icon: 'FileTextIcon',
+    gradient: 'from-rose-500/20 via-orange-500/10 to-transparent border-rose-500/30 text-rose-400',
+  },
+  {
+    id: 'text',
+    title: 'Text & Document Tools',
+    titleBn: 'টেক্সট ও ডকুমেন্ট টুলস',
+    description: 'Analyze word count, format JSON/XML, convert cases, test regex, diff text, and encode strings.',
+    descriptionBn: 'শব্দ গণনা, কেইস পরিবর্তন, জেএসওন ফরম্যাট, রেজেক্স পরীক্ষা এবং টেক্সট ক্লিন করুন।',
+    icon: 'TypeIcon',
+    gradient: 'from-emerald-500/20 via-teal-500/10 to-transparent border-emerald-500/30 text-emerald-400',
+  },
+  {
+    id: 'developer',
+    title: 'Developer & SEO Tools',
+    titleBn: 'ডেভেলপার ও এসইও টুলস',
+    description: 'Generate QR codes, barcodes, secure passwords, UUIDs, hashes, meta tags, robots.txt, and CSS styles.',
+    descriptionBn: 'কিউআর কোড, বারকোড, পাসওয়ার্ড, হ্যাশ, মেটা ট্যাগ, রোবট টেক্সট ও সিএসএস কোড তৈরি করুন।',
+    icon: 'CodeIcon',
+    gradient: 'from-violet-500/20 via-purple-500/10 to-transparent border-violet-500/30 text-violet-400',
+  },
+  {
+    id: 'calculator',
+    title: 'Calculators & Productivity',
+    titleBn: 'ক্যালকুলেটর ও প্রোডাক্টিভিটি',
+    description: 'Perform percentage, loan EMI, compound interest, age, date difference, tax, and unit calculations.',
+    descriptionBn: 'শতকরা, লোন ইএমআই, বয়স, তারিখের ব্যবধান, ভ্যাট-ট্যাক্স ও ইউনিট রূপান্তর করুন।',
+    icon: 'CalculatorIcon',
+    gradient: 'from-amber-500/20 via-yellow-500/10 to-transparent border-amber-500/30 text-amber-400',
+  },
+];
