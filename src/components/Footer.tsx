@@ -158,16 +158,12 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, lang }) => {
           <div className="flex flex-wrap items-center justify-center gap-3">
             <span className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-900 border border-slate-800 text-slate-300">
               <span>{lang === 'en' ? 'Created with vision by' : 'পরিকল্পনা ও রূপায়ণে'}</span>
-              <span className="font-bold bg-gradient-to-r from-cyan-300 to-cyan-400 bg-clip-text text-transparent">
-                Aiyan
-              </span>
-              <span className="text-slate-400 font-bold">×</span>
-              <span className="font-bold bg-gradient-to-r from-violet-300 to-violet-400 bg-clip-text text-transparent">
-                Ritu
+              <span className="font-bold bg-gradient-to-r from-cyan-300 via-sky-300 to-cyan-400 bg-clip-text text-transparent">
+                Ariyan
               </span>
             </span>
-            <span className="hidden md:inline-flex items-center gap-1 text-slate-500 text-[11px]">
-              • {lang === 'en' ? 'Owners & Creators' : 'মালিক ও নির্মাতা'}
+            <span className="inline-flex items-center gap-1 text-slate-500 text-[11px]">
+              • {lang === 'en' ? 'Website Owner & Creator' : 'মালিক ও নির্মাতা'}
             </span>
           </div>
         </div>

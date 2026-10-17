@@ -1,6 +1,6 @@
 {
   "name": "NovaTools - 80+ Powerful Tools. One Limitless Workspace.",
-  "description": "Convert images, manage PDFs, format documents, generate QR codes, and simplify everyday tasks with 80+ powerful, free, privacy-first online tools.",
+  "description": "Convert images, manage PDFs, format documents, and chat with Ariyan Bot AI with 80+ powerful, free, privacy-first online tools created by Ariyan.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

@@ -14,7 +14,8 @@ import {
   Layers, 
   BookOpen, 
   CheckCircle2, 
-  Star 
+  Star,
+  Bot
 } from 'lucide-react';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
@@ -28,6 +29,7 @@ import { LegalPages } from './components/LegalPages';
 import { SearchModal } from './components/SearchModal';
 import { AdSlot } from './components/AdSlot';
 import { OwnersSection } from './components/OwnersSection';
+import { AriyanBot } from './components/AriyanBot';
 import { TOOLS } from './data/tools';
 import { CATEGORIES } from './data/categories';
 import { ToolCategory } from './types';
@@ -106,6 +108,8 @@ export default function App() {
         const cat = hash.replace(/^(categories|category)\//, '') as ToolCategory;
         setSelectedCategory(cat);
         setCurrentView('directory');
+      } else if (['bot', 'chat', 'ariyan-bot'].includes(hash)) {
+        setCurrentView('bot');
       } else if (['directory', 'categories', 'popular', 'guides', 'about', 'privacy', 'terms', 'cookies', 'disclaimer', 'contact'].includes(hash)) {
         setCurrentView(hash);
       }
@@ -238,6 +242,14 @@ export default function App() {
           />
         )}
 
+        {/* VIEW: ARIYAN BOT AI CHATBOT */}
+        {currentView === 'bot' && (
+          <AriyanBot
+            lang={lang}
+            onNavigateHome={() => handleNavigate('home')}
+          />
+        )}
+
         {/* VIEW: HOMEPAGE */}
         {currentView === 'home' && (
           <div className="space-y-16 lg:space-y-24">
@@ -288,6 +300,47 @@ export default function App() {
                     lang={lang}
                   />
                 ))}
+              </div>
+            </section>
+
+            {/* Ariyan Bot AI Feature Banner */}
+            <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="relative overflow-hidden p-8 sm:p-10 rounded-3xl bg-gradient-to-r from-slate-900 via-slate-900 to-cyan-950/60 border border-cyan-500/30 shadow-2xl flex flex-col md:flex-row items-center justify-between gap-8 group">
+                <div className="absolute top-0 right-0 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none" />
+                <div className="space-y-4 max-w-2xl relative z-10">
+                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 text-xs font-mono font-bold uppercase">
+                    <Bot className="w-4 h-4" />
+                    <span>Next-Gen AI Assistant</span>
+                  </div>
+                  <h3 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+                    {lang === 'en' ? 'Meet Ariyan Bot — Intelligence Reimagined' : 'আরিয়ান বট — স্মার্ট এআই সহায়ক'}
+                  </h3>
+                  <p className="text-sm text-slate-300 leading-relaxed">
+                    {lang === 'en'
+                      ? 'Experience real ChatGPT-style intelligence with multimodal image analysis, code troubleshooting, Bengali and English fluency, and live Google web search citations.'
+                      : 'চ্যাটজিপিটি ধাঁচের রিয়েল এআই সহায়ক: ছবির উপাদান বিশ্লেষণ, প্রোগ্রামিং কোড ডিবাগিং, বাংলা ও ইংরেজি উভয় ভাষায় পারদর্শী এবং লাইভ গুগল সার্চ সংযোগ।'}
+                  </p>
+                  <div className="flex flex-wrap items-center gap-4 pt-2">
+                    <button
+                      onClick={() => handleNavigate('bot')}
+                      className="px-6 py-2.5 rounded-xl bg-gradient-to-r from-cyan-400 to-blue-500 hover:from-cyan-300 hover:to-blue-400 text-slate-950 font-bold text-xs shadow-lg shadow-cyan-500/25 flex items-center gap-2 cursor-pointer transition-all"
+                    >
+                      <Bot className="w-4 h-4" />
+                      <span>{lang === 'en' ? 'Launch Ariyan Bot' : 'আরিয়ান বট চালু করুন'}</span>
+                      <ArrowRight className="w-4 h-4" />
+                    </button>
+                    <span className="text-xs text-slate-400 font-mono flex items-center gap-1.5">
+                      <Sparkles className="w-3.5 h-3.5 text-cyan-400" />
+                      {lang === 'en' ? 'Vision Capable • Powered by Gemini' : 'ইমেজ অ্যানালাইসিস সমর্থিত'}
+                    </span>
+                  </div>
+                </div>
+
+                <div className="relative shrink-0 flex items-center justify-center">
+                  <div className="w-28 h-28 sm:w-36 sm:h-36 rounded-3xl bg-slate-950 border border-slate-700/80 p-6 flex items-center justify-center shadow-2xl shadow-cyan-500/20 group-hover:scale-105 transition-transform duration-300">
+                    <Bot className="w-16 h-16 sm:w-20 sm:h-20 text-cyan-400 animate-pulse" />
+                  </div>
+                </div>
               </div>
             </section>
 
@@ -516,8 +569,30 @@ export default function App() {
         lang={lang}
       />
 
-      {/* Footer */}
-      <Footer onNavigate={handleNavigate} lang={lang} />
+      {/* Floating Ariyan Bot Quick Launcher */}
+      {currentView !== 'bot' && (
+        <button
+          onClick={() => handleNavigate('bot')}
+          className="fixed bottom-6 right-6 z-40 flex items-center gap-2.5 px-4 py-3 rounded-full bg-gradient-to-r from-cyan-400 via-sky-400 to-violet-500 text-slate-950 font-extrabold text-xs shadow-2xl shadow-cyan-500/30 hover:shadow-cyan-500/50 hover:scale-105 active:scale-95 transition-all group cursor-pointer border border-cyan-300/40"
+          title={lang === 'en' ? 'Chat with Ariyan Bot AI' : 'আরিয়ান বটের সাথে কথা বলুন'}
+          aria-label="Open Ariyan Bot AI Assistant"
+        >
+          <div className="relative">
+            <Bot className="w-5 h-5 text-slate-950 group-hover:rotate-12 transition-transform" />
+            <span className="absolute -top-1 -right-1 w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
+            <span className="absolute -top-1 -right-1 w-2 h-2 rounded-full bg-emerald-400" />
+          </div>
+          <span className="tracking-wide">Ariyan Bot</span>
+          <span className="px-1.5 py-0.5 rounded text-[10px] bg-slate-950/20 text-slate-950 font-mono font-bold">
+            AI
+          </span>
+        </button>
+      )}
+
+      {/* Footer (hidden in full-screen Ariyan Bot view) */}
+      {currentView !== 'bot' && (
+        <Footer onNavigate={handleNavigate} lang={lang} />
+      )}
 
     </div>
   );

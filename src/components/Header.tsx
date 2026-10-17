@@ -11,7 +11,8 @@ import {
   Layers, 
   BookOpen, 
   ShieldCheck,
-  ChevronRight
+  ChevronRight,
+  Bot
 } from 'lucide-react';
 import { ToolDef } from '../types';
 
@@ -40,6 +41,7 @@ export const Header: React.FC<HeaderProps> = ({
 
   const navItems = [
     { id: 'home', label: 'Home', labelBn: 'হোম' },
+    { id: 'bot', label: 'Ariyan Bot', labelBn: 'আরিয়ান বট', isAi: true },
     { id: 'directory', label: 'All Tools', labelBn: 'সব টুলস' },
     { id: 'categories', label: 'Categories', labelBn: 'ক্যাটাগরি' },
     { id: 'popular', label: 'Popular', labelBn: 'জনপ্রিয়' },
@@ -90,13 +92,21 @@ export const Header: React.FC<HeaderProps> = ({
               <button
                 key={item.id}
                 onClick={() => handleNav(item.id)}
-                className={`px-3 py-1.5 text-sm font-medium rounded-lg transition-all ${
+                className={`px-3 py-1.5 text-sm font-medium rounded-lg transition-all flex items-center gap-1.5 ${
                   isActive
                     ? 'text-cyan-400 bg-cyan-500/10 shadow-sm'
+                    : item.isAi
+                    ? 'text-cyan-300 hover:text-cyan-200 hover:bg-cyan-500/10'
                     : 'text-slate-300 hover:text-white hover:bg-slate-800/60'
                 }`}
               >
-                {lang === 'en' ? item.label : item.labelBn}
+                {item.isAi && <Bot className="w-4 h-4 text-cyan-400" />}
+                <span>{lang === 'en' ? item.label : item.labelBn}</span>
+                {item.isAi && (
+                  <span className="px-1 py-0.2 rounded text-[9px] font-mono font-bold bg-cyan-500/20 text-cyan-300 border border-cyan-500/30">
+                    AI
+                  </span>
+                )}
               </button>
             );
           })}
@@ -180,7 +190,15 @@ export const Header: React.FC<HeaderProps> = ({
               onClick={() => handleNav(item.id)}
               className="w-full flex items-center justify-between px-3 py-2.5 rounded-lg text-left text-sm font-medium text-slate-200 hover:bg-slate-800/80"
             >
-              <span>{lang === 'en' ? item.label : item.labelBn}</span>
+              <span className="flex items-center gap-2">
+                {item.isAi && <Bot className="w-4 h-4 text-cyan-400" />}
+                <span>{lang === 'en' ? item.label : item.labelBn}</span>
+                {item.isAi && (
+                  <span className="px-1.5 py-0.5 rounded text-[10px] font-mono font-bold bg-cyan-500/20 text-cyan-300 border border-cyan-500/30">
+                    AI
+                  </span>
+                )}
+              </span>
               <ChevronRight className="w-4 h-4 text-slate-500" />
             </button>
           ))}

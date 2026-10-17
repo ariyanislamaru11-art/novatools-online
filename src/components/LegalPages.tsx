@@ -85,15 +85,15 @@ export const LegalPages: React.FC<LegalPagesProps> = ({ page, lang }) => {
             </div>
 
             <h2 className="text-2xl font-bold text-white tracking-tight">
-              {lang === 'en' ? 'Built by Aiyan × Ritu' : 'আইয়ান ও ঋতুর সমন্বিত প্রয়াস'}
+              {lang === 'en' ? 'Built by Ariyan' : 'আইয়ানের রূপকল্প ও নির্মাণ'}
             </h2>
 
             <div className="space-y-3 text-sm text-slate-300 leading-relaxed">
               <p>
-                NovaTools is a digital workspace built around the goal of making everyday online tasks easier, faster, and more accessible. Rather than navigating dozens of separate websites with inconsistent quality, NovaTools brings essential file converters, PDF managers, text formatters, developer tools, and calculators into one seamless environment.
+                NovaTools is a digital workspace built around the goal of making everyday online tasks easier, faster, and more accessible. Rather than navigating dozens of separate websites with inconsistent quality, NovaTools brings essential file converters, PDF managers, text formatters, developer tools, calculators, and the intelligent Ariyan Bot AI into one seamless environment.
               </p>
               <p>
-                The platform is owned and created by <strong>Aiyan and Ritu</strong>, whose shared vision drives its development:
+                The platform is owned and created by <strong>Ariyan</strong>, whose vision drives its development and continuous enhancement:
               </p>
             </div>
 
@@ -101,17 +101,15 @@ export const LegalPages: React.FC<LegalPagesProps> = ({ page, lang }) => {
             <div className="p-6 rounded-2xl bg-slate-950/80 border border-slate-800/90 flex flex-col sm:flex-row items-center justify-between gap-6 text-center sm:text-left">
               <div className="space-y-1">
                 <div className="text-xl sm:text-2xl font-extrabold tracking-tight">
-                  <span className="bg-gradient-to-r from-white via-cyan-200 to-cyan-400 bg-clip-text text-transparent">AIYAN</span>
-                  <span className="text-slate-400 mx-2.5 font-bold">×</span>
-                  <span className="bg-gradient-to-r from-white via-violet-200 to-violet-400 bg-clip-text text-transparent">RITU</span>
+                  <span className="bg-gradient-to-r from-white via-cyan-200 to-cyan-400 bg-clip-text text-transparent">ARIYAN</span>
                 </div>
                 <p className="text-xs text-slate-400 font-medium">
-                  {lang === 'en' ? '“Two Minds. One Vision. Limitless Possibilities.”' : '“দুটি মন। এক অভিন্ন দৃষ্টিভঙ্গি। সীমাহীন সম্ভাবনা।”'}
+                  {lang === 'en' ? '“One Mind. One Vision. Limitless Possibilities.”' : '“এক অভিন্ন দৃষ্টিভঙ্গি। সীমাহীন সম্ভাবনা।”'}
                 </p>
               </div>
 
               <div className="shrink-0 px-4 py-2 rounded-xl bg-gradient-to-r from-cyan-500/10 via-slate-900 to-violet-500/10 border border-slate-700 text-xs font-mono font-bold text-slate-200">
-                Co-Owners &amp; Creators of NovaTools
+                Website Owner &amp; Creator of NovaTools
               </div>
             </div>
           </div>
