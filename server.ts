@@ -122,7 +122,7 @@ app.post('/api/chat', async (req: Request, res: Response) => {
     if (enableSearch) {
       try {
         response = await ai.models.generateContent({
-          model: 'gemini-3.1-flash-lite',
+          model: 'gemini-3.8-flash',
           contents,
           config: {
             ...config,
@@ -137,7 +137,7 @@ app.post('/api/chat', async (req: Request, res: Response) => {
 
     if (!response) {
       response = await ai.models.generateContent({
-        model: 'gemini-3.1-flash-lite',
+        model: 'gemini-3.8-flash',
         contents,
         config,
       });
@@ -165,7 +165,7 @@ app.post('/api/chat', async (req: Request, res: Response) => {
       reply,
       sources,
       webSearchQueries,
-      model: 'gemini-3.1-flash-lite',
+      model: 'gemini-3.8-flash',
     });
   } catch (err: any) {
     console.error('Error in Ariyan Bot API:', err);

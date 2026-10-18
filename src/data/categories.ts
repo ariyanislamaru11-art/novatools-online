@@ -46,4 +46,13 @@ export const CATEGORIES: CategoryDef[] = [
     icon: 'CalculatorIcon',
     gradient: 'from-amber-500/20 via-yellow-500/10 to-transparent border-amber-500/30 text-amber-400',
   },
+  {
+    id: 'video',
+    title: 'Audio & Video Tools',
+    titleBn: 'অডিও ও ভিডিও টুলস',
+    description: 'Clean background noise, cancel hiss, hum, and wind from videos while isolating crisp, studio-grade vocals.',
+    descriptionBn: 'ভিডিও থেকে ব্যাকগ্রাউন্ড নয়েজ ও শোঁ শোঁ শব্দ মুছে ফেলে স্পষ্ট ও নিখুঁত কণ্ঠস্বর বা ভোকাল রাখুন।',
+    icon: 'VideoIcon',
+    gradient: 'from-fuchsia-500/20 via-pink-500/10 to-transparent border-fuchsia-500/30 text-fuchsia-400',
+  },
 ];

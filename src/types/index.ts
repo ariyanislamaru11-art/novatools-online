@@ -1,4 +1,4 @@
-export type ToolCategory = 'image' | 'pdf' | 'text' | 'developer' | 'calculator';
+export type ToolCategory = 'image' | 'pdf' | 'text' | 'developer' | 'calculator' | 'video';
 
 export interface ToolFAQ {
   question: string;

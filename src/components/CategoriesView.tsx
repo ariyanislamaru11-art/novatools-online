@@ -6,7 +6,8 @@ import {
   Code, 
   Calculator, 
   ArrowRight,
-  Sparkles
+  Sparkles,
+  Video as VideoIcon
 } from 'lucide-react';
 import { CATEGORIES } from '../data/categories';
 import { ToolDef, ToolCategory } from '../types';
@@ -59,6 +60,7 @@ export const CategoriesView: React.FC<CategoriesViewProps> = ({
                     {cat.id === 'text' && <Type className="w-6 h-6 text-emerald-400" />}
                     {cat.id === 'developer' && <Code className="w-6 h-6 text-violet-400" />}
                     {cat.id === 'calculator' && <Calculator className="w-6 h-6 text-amber-400" />}
+                    {cat.id === 'video' && <VideoIcon className="w-6 h-6 text-fuchsia-400" />}
                   </div>
                   <span className="px-2.5 py-1 rounded-full bg-slate-800 text-slate-300 font-mono text-xs font-bold">
                     {catTools.length} Tools

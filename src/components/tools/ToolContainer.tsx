@@ -17,6 +17,7 @@ import { PdfViewerTools } from './PdfViewerTools';
 import { TextViewerTools } from './TextViewerTools';
 import { DevViewerTools } from './DevViewerTools';
 import { CalcViewerTools } from './CalcViewerTools';
+import { VideoNoiseRemover } from './VideoNoiseRemover';
 import { AdSlot } from '../AdSlot';
 
 interface ToolContainerProps {
@@ -120,6 +121,9 @@ export const ToolContainer: React.FC<ToolContainerProps> = ({
         {tool.category === 'text' && <TextViewerTools tool={tool} lang={lang} />}
         {tool.category === 'developer' && <DevViewerTools tool={tool} lang={lang} />}
         {tool.category === 'calculator' && <CalcViewerTools tool={tool} lang={lang} />}
+        {(tool.category === 'video' || tool.slug === 'video-noise-remover') && (
+          <VideoNoiseRemover tool={tool} lang={lang} />
+        )}
       </main>
 
       {/* Optional AdSlot Placement on Eligible Tool Page */}

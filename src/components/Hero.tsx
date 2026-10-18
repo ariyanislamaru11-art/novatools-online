@@ -60,6 +60,8 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate, lang, tools, onSelectToo
       matched = tools.filter(t => ['json-formatter'].includes(t.slug));
     } else if (ext === 'csv') {
       matched = tools.filter(t => ['csv-viewer-converter'].includes(t.slug));
+    } else if (file.type.includes('video') || ['mp4', 'webm', 'mov', 'mkv', 'avi'].includes(ext)) {
+      matched = tools.filter(t => ['video-noise-remover'].includes(t.slug));
     } else {
       matched = tools.filter(t => ['word-counter', 'sha256-hash-calculator', 'base64-encoder-decoder'].includes(t.slug));
     }
@@ -186,6 +188,7 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate, lang, tools, onSelectToo
             { label: 'Image Compressor', slug: 'image-compressor' },
             { label: 'Merge PDF', slug: 'merge-pdf' },
             { label: 'QR Code', slug: 'qr-code-generator' },
+            { label: 'Video Noise Remover', slug: 'video-noise-remover' },
             { label: 'JSON Formatter', slug: 'json-formatter' },
           ].map(chip => (
             <button

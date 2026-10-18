@@ -51,17 +51,17 @@ const STORAGE_KEY = 'novatools_ariyanbot_sessions_v1';
 const ACTIVE_SESSION_KEY = 'novatools_ariyanbot_active_id';
 
 const STARTER_PROMPTS_EN = [
+  { label: 'Video Noise Remover & Vocal', prompt: 'Tell me how NovaTools Video Noise Remover cancels background hiss, hum, and wind while isolating human vocals.' },
   { label: 'Explain Quantum Computing', prompt: 'Explain quantum computing in simple terms with a real-world analogy.' },
   { label: 'Bengali Poem & Translation', prompt: 'বাংলায় একটি সুন্দর প্রেরণাদায়ী কবিতা লেখো এবং ইংরেজিতে অনুবাদ করো।' },
   { label: 'Optimize React Code', prompt: 'How do I optimize React 19 state updates and prevent unnecessary re-renders?' },
-  { label: 'Analyze Uploaded Image', prompt: 'Please analyze this uploaded image and describe its key visual details.' },
 ];
 
 const STARTER_PROMPTS_BN = [
+  { label: 'ভিডিও নয়েজ রিমুভার ও ভোকাল', prompt: 'নোভাটুলসের ভিডিও নয়েজ রিমুভার ও ভোকাল আইসোলেটর টুলটি কীভাবে ভিডিওর ব্যাকগ্রাউন্ড নয়েজ দূর করে ভোকাল স্পষ্ট রাখে?' },
   { label: 'কোয়ান্টাম কম্পিউটিং ব্যাখ্যা', prompt: 'কোয়ান্টাম কম্পিউটিং সহজ ভাষায় বাস্তব জীবনের উদাহরণ সহ ব্যাখ্যা করো।' },
   { label: 'বাংলা কবিতা ও অর্থ', prompt: 'জীবন ও অধ্যবসায় নিয়ে একটি চমৎকার বাংলা কবিতা লেখো এবং এর অন্তর্নিহিত ভাবার্থ বুঝিয়ে দাও।' },
   { label: 'প্রোগ্রামিং সাহায্য', prompt: 'ওয়েব ডেভেলপমেন্ট শেখার জন্য একটি ধাপে ধাপে রোডম্যাপ তৈরি করে দাও।' },
-  { label: 'ছবি বিশ্লেষণ', prompt: 'অনুগ্রহ করে আমার আপলোড করা ছবিটি পরীক্ষা করে এর ভেতরের উপাদানগুলো বিশদভাবে বর্ণনা করো।' },
 ];
 
 export const AriyanBot: React.FC<AriyanBotProps> = ({ lang, onNavigateHome }) => {
@@ -287,7 +287,18 @@ export const AriyanBot: React.FC<AriyanBotProps> = ({ lang, onNavigateHome }) =>
         }),
       });
 
-      const data = await response.json();
+      let data: any;
+      const contentType = response.headers.get('content-type') || '';
+      if (contentType.includes('application/json')) {
+        data = await response.json();
+      } else {
+        const rawText = await response.text();
+        throw new Error(
+          lang === 'en'
+            ? `Server returned an unexpected response (status ${response.status}). Please try again in a moment.`
+            : `সার্ভার থেকে অপ্রত্যাশিত প্রতিক্রিয়া পাওয়া গেছে (স্ট্যাটাস ${response.status})। অনুগ্রহ করে একটু পর আবার চেষ্টা করুন।`
+        );
+      }
 
       if (!response.ok) {
         throw new Error(data.message || `Request failed with status ${response.status}`);

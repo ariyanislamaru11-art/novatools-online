@@ -1749,4 +1749,28 @@ export const TOOLS: ToolDef[] = [
     ],
     privacyNote: 'Calculated privately in browser.',
   },
+  {
+    id: 'video-noise-remover',
+    slug: 'video-noise-remover',
+    name: 'Video Noise Remover & Vocal Isolator',
+    nameBn: 'ভিডিও নয়েজ রিমুভার ও ভোকাল আইসোলেটর',
+    description: 'Upload any video to cancel background hiss, fan hum, wind, and room noise while isolating crisp, studio-grade human vocals in real-time.',
+    descriptionBn: 'ভিডিও আপলোড করে ব্যাকগ্রাউন্ডের সব নয়েজ ও শোঁ শোঁ শব্দ দূর করুন এবং স্পষ্ট ও পরিষ্কার ভোকাল আলাদা করে ডাউনলোড করুন।',
+    category: 'video',
+    icon: 'VideoIcon',
+    keywords: ['video noise remover', 'remove noise from video', 'vocal isolation', 'audio denoiser', 'background noise cancel', 'clean vocal', 'ভিডিও নয়েজ রিমুভার', 'ভোকাল'],
+    isPopular: true,
+    status: 'implemented',
+    steps: [
+      { step: 1, title: 'Upload Video', desc: 'Select or drag your video file (MP4, WebM, MOV, MKV) onto the player.' },
+      { step: 2, title: 'Denoise & Tune Vocals', desc: 'Select Studio Vocal or Speech Clarity preset and compare live with the A/B Original/Denoised toggle.' },
+      { step: 3, title: 'Export & Download', desc: 'Download your clean denoised video or exported studio vocal audio track.' },
+    ],
+    faqs: [
+      { question: 'How does the video noise cancellation work?', answer: 'It uses real-time Web Audio DSP filters including 50Hz/60Hz hum notch, bandpass vocal isolation, low-end rumble cut, and dynamic noise gating to suppress background noise while preserving voice clarity.' },
+      { question: 'Are my videos uploaded to any external server?', answer: 'No. All video audio filtering and rendering happens 100% locally inside your web browser for complete privacy.' },
+      { question: 'What formats are supported?', answer: 'MP4, WebM, MOV, MKV, and all HTML5 video formats supported by your browser.' },
+    ],
+    privacyNote: '100% Client-Side. Your private video never leaves your browser.',
+  },
 ];

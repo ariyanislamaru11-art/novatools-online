@@ -14,7 +14,8 @@ import {
   Maximize,
   Minimize,
   Scissors,
-  CheckCircle2
+  CheckCircle2,
+  Video as VideoIcon
 } from 'lucide-react';
 import { ToolDef } from '../types';
 
@@ -55,6 +56,10 @@ export const ToolCard: React.FC<ToolCardProps> = ({
       badge: 'bg-amber-500/10 text-amber-400 border-amber-500/20',
       iconBg: 'bg-amber-500/10 text-amber-400 border-amber-500/20',
     },
+    video: {
+      badge: 'bg-fuchsia-500/10 text-fuchsia-400 border-fuchsia-500/20',
+      iconBg: 'bg-fuchsia-500/10 text-fuchsia-400 border-fuchsia-500/20',
+    },
   };
 
   const style = categoryStyles[tool.category] || categoryStyles.image;
@@ -82,6 +87,7 @@ export const ToolCard: React.FC<ToolCardProps> = ({
             {tool.category === 'text' && <Type className="w-5 h-5" />}
             {tool.category === 'developer' && <Code className="w-5 h-5" />}
             {tool.category === 'calculator' && <Calculator className="w-5 h-5" />}
+            {(tool.category === 'video' || tool.slug === 'video-noise-remover') && <VideoIcon className="w-5 h-5" />}
           </div>
 
           <div className="flex items-center gap-1.5">
