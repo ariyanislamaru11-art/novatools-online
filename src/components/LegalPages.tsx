@@ -93,7 +93,7 @@ export const LegalPages: React.FC<LegalPagesProps> = ({ page, lang }) => {
                 NovaTools is a digital workspace built around the goal of making everyday online tasks easier, faster, and more accessible. Rather than navigating dozens of separate websites with inconsistent quality, NovaTools brings essential file converters, PDF managers, text formatters, developer tools, calculators, and the intelligent Ariyan Bot AI into one seamless environment.
               </p>
               <p>
-                The platform is owned and created by <strong>Ariyan</strong>, whose vision drives its development and continuous enhancement:
+                The platform is founded and created by <strong>Ariyan</strong>, whose architectural vision drives its development and continuous enhancement, with creative reference and inspiration provided by <strong>Ritu</strong>.
               </p>
             </div>
 
@@ -106,10 +106,13 @@ export const LegalPages: React.FC<LegalPagesProps> = ({ page, lang }) => {
                 <p className="text-xs text-slate-400 font-medium">
                   {lang === 'en' ? '“One Mind. One Vision. Limitless Possibilities.”' : '“এক অভিন্ন দৃষ্টিভঙ্গি। সীমাহীন সম্ভাবনা।”'}
                 </p>
+                <div className="text-[11px] font-mono text-slate-500 pt-1">
+                  Creative Reference: <span className="text-violet-300 font-medium">Ritu</span>
+                </div>
               </div>
 
               <div className="shrink-0 px-4 py-2 rounded-xl bg-gradient-to-r from-cyan-500/10 via-slate-900 to-violet-500/10 border border-slate-700 text-xs font-mono font-bold text-slate-200">
-                Website Owner &amp; Creator of NovaTools
+                Primary Owner &amp; Founder of NovaTools
               </div>
             </div>
           </div>

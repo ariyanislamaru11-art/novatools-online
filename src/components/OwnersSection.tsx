@@ -103,14 +103,22 @@ export const OwnersSection: React.FC<OwnersSectionProps> = ({ lang }) => {
             </div>
 
             {/* Vision Statement */}
-            <div className="pt-4 border-t border-slate-800/80 text-center">
+            <div className="pt-4 border-t border-slate-800/80 text-center space-y-3">
               <p className="text-xs sm:text-sm text-slate-300 max-w-md mx-auto leading-relaxed">
                 {lang === 'en'
                   ? '“Built with vision to make powerful digital tools and intelligent AI accessible to everyone.”'
                   : '“সবার জন্য শক্তিশালী ডিজিটাল টুলস ও কৃত্রিম বুদ্ধিমত্তা সহজলভ্য করার দৃষ্টিভঙ্গি নিয়ে নোভাটুলস নির্মিত।”'}
               </p>
-              <div className="mt-3 text-[11px] font-mono uppercase tracking-wider text-slate-500">
-                Created &amp; Developed by Ariyan
+              <div className="flex flex-wrap items-center justify-center gap-2 pt-1 text-[11px] font-mono">
+                <span className="text-slate-300">
+                  {lang === 'en' ? 'Founded & Created by' : 'প্রতিষ্ঠাতা ও নির্মাতা'}{' '}
+                  <span className="text-cyan-400 font-bold">Ariyan</span>
+                </span>
+                <span className="text-slate-600">•</span>
+                <span className="text-slate-400">
+                  {lang === 'en' ? 'Creative Reference:' : 'সৃজনশীল অনুপ্রেরণা:'}{' '}
+                  <span className="text-violet-300 font-semibold">Ritu</span>
+                </span>
               </div>
             </div>
           </div>

@@ -155,15 +155,19 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, lang }) => {
           <div>
             © {year} NovaTools. All rights reserved. Free, open, and private online tools workspace.
           </div>
-          <div className="flex flex-wrap items-center justify-center gap-3">
+          <div className="flex flex-wrap items-center justify-center gap-2.5 sm:gap-3">
             <span className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-900 border border-slate-800 text-slate-300">
-              <span>{lang === 'en' ? 'Created with vision by' : 'পরিকল্পনা ও রূপায়ণে'}</span>
+              <span>{lang === 'en' ? 'Founded & Created by' : 'প্রতিষ্ঠাতা ও নির্মাতা'}</span>
               <span className="font-bold bg-gradient-to-r from-cyan-300 via-sky-300 to-cyan-400 bg-clip-text text-transparent">
                 Ariyan
               </span>
             </span>
             <span className="inline-flex items-center gap-1 text-slate-500 text-[11px]">
-              • {lang === 'en' ? 'Website Owner & Creator' : 'মালিক ও নির্মাতা'}
+              • {lang === 'en' ? 'Primary Owner' : 'প্রধান মালিক'}
+            </span>
+            <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-slate-900/80 border border-slate-800 text-[11px] text-slate-400">
+              <span>{lang === 'en' ? 'Creative Reference:' : 'সৃজনশীল অনুপ্রেরণা:'}</span>
+              <span className="text-violet-300 font-semibold">Ritu</span>
             </span>
           </div>
         </div>
