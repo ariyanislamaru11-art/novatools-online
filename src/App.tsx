@@ -15,7 +15,9 @@ import {
   BookOpen, 
   CheckCircle2, 
   Star,
-  Bot
+  Bot,
+  Film,
+  Clock
 } from 'lucide-react';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
@@ -30,13 +32,14 @@ import { SearchModal } from './components/SearchModal';
 import { AdSlot } from './components/AdSlot';
 import { OwnersSection } from './components/OwnersSection';
 import { AriyanBot } from './components/AriyanBot';
+import { CreatorStudioView } from './components/CreatorStudioView';
 import { TOOLS } from './data/tools';
 import { CATEGORIES } from './data/categories';
 import { ToolCategory } from './types';
 
 export default function App() {
   const [currentView, setCurrentView] = useState<string>('home');
-  const [currentToolSlug, setCurrentToolSlug] = useState<string>('pdf-reader');
+  const [currentToolSlug, setCurrentToolSlug] = useState<string>('video-noise-remover');
   const [selectedCategory, setSelectedCategory] = useState<ToolCategory | 'all'>('all');
   const [isSearchOpen, setIsSearchOpen] = useState(false);
 
@@ -62,6 +65,10 @@ export default function App() {
     }
   });
 
+  const [isEcoMode, setIsEcoMode] = useState<boolean>(() => {
+    return localStorage.getItem('novatools_eco') === 'true';
+  });
+
   // Sync theme with DOM root
   useEffect(() => {
     localStorage.setItem('novatools_theme', isDark ? 'dark' : 'light');
@@ -71,6 +78,16 @@ export default function App() {
       document.documentElement.classList.remove('light-mode');
     }
   }, [isDark]);
+
+  // Sync Eco Mode with DOM root
+  useEffect(() => {
+    localStorage.setItem('novatools_eco', isEcoMode ? 'true' : 'false');
+    if (isEcoMode) {
+      document.documentElement.classList.add('eco-mode');
+    } else {
+      document.documentElement.classList.remove('eco-mode');
+    }
+  }, [isEcoMode]);
 
   // Sync language with localStorage
   useEffect(() => {
@@ -110,6 +127,8 @@ export default function App() {
         setCurrentView('directory');
       } else if (['bot', 'chat', 'ariyan-bot'].includes(hash)) {
         setCurrentView('bot');
+      } else if (['studio', 'creator-studio', 'video-studio'].includes(hash)) {
+        setCurrentView('studio');
       } else if (['directory', 'categories', 'popular', 'guides', 'about', 'privacy', 'terms', 'cookies', 'disclaimer', 'contact'].includes(hash)) {
         setCurrentView(hash);
       }
@@ -181,6 +200,8 @@ export default function App() {
         onToggleTheme={() => setIsDark(d => !d)}
         favoritesCount={favorites.length}
         onOpenSearch={() => setIsSearchOpen(true)}
+        isEcoMode={isEcoMode}
+        onToggleEcoMode={() => setIsEcoMode(e => !e)}
       />
 
       {/* Main Content Sections */}
@@ -250,6 +271,14 @@ export default function App() {
           />
         )}
 
+        {/* VIEW: VIDEO & AUDIO CREATOR STUDIO */}
+        {currentView === 'studio' && (
+          <CreatorStudioView
+            onSelectTool={handleSelectTool}
+            lang={lang}
+          />
+        )}
+
         {/* VIEW: HOMEPAGE */}
         {currentView === 'home' && (
           <div className="space-y-16 lg:space-y-24">
@@ -261,6 +290,40 @@ export default function App() {
               tools={TOOLS}
               onSelectTool={handleSelectTool}
             />
+
+            {/* Recently Used Tools */}
+            {recentSlugs.length > 0 && (
+              <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-3">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-slate-400">
+                    <Clock className="w-3.5 h-3.5 text-cyan-400" />
+                    <span>{lang === 'en' ? 'Recently Used Tools' : 'সম্প্রতি ব্যবহৃত টুলস'}</span>
+                  </div>
+                  <button
+                    onClick={() => setRecentSlugs([])}
+                    className="text-[11px] text-slate-500 hover:text-slate-300 transition"
+                  >
+                    {lang === 'en' ? 'Clear History' : 'হিস্ট্রি মুছুন'}
+                  </button>
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  {recentSlugs.slice(0, 8).map(slug => {
+                    const tool = TOOLS.find(t => t.slug === slug);
+                    if (!tool) return null;
+                    return (
+                      <button
+                        key={slug}
+                        onClick={() => handleSelectTool(slug)}
+                        className="px-3 py-1.5 rounded-xl bg-slate-900/90 hover:bg-slate-800 border border-slate-800 text-xs font-medium text-slate-200 hover:text-cyan-400 flex items-center gap-2 transition cursor-pointer"
+                      >
+                        <span className="w-2 h-2 rounded-full bg-cyan-400" />
+                        <span>{lang === 'en' ? tool.name : tool.nameBn}</span>
+                      </button>
+                    );
+                  })}
+                </div>
+              </section>
+            )}
 
             {/* C. Popular tools section */}
             <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
@@ -284,7 +347,7 @@ export default function App() {
                   onClick={() => handleNavigate('directory')}
                   className="text-xs text-cyan-400 hover:text-cyan-300 font-bold flex items-center gap-1 group self-start sm:self-auto cursor-pointer"
                 >
-                  <span>View All 82 Tools</span>
+                  <span>{lang === 'en' ? `View All ${TOOLS.length} Tools` : `সব ${TOOLS.length}টি টুল দেখুন`}</span>
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </button>
               </div>
@@ -300,6 +363,45 @@ export default function App() {
                     lang={lang}
                   />
                 ))}
+              </div>
+            </section>
+
+            {/* Creator Studio Showcase Banner */}
+            <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="relative overflow-hidden p-8 sm:p-10 rounded-3xl bg-gradient-to-r from-slate-900 via-indigo-950/50 to-slate-900 border border-fuchsia-500/30 shadow-2xl flex flex-col md:flex-row items-center justify-between gap-8 group">
+                <div className="space-y-4 max-w-2xl relative z-10">
+                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-fuchsia-500/10 border border-fuchsia-500/30 text-fuchsia-400 text-xs font-mono font-bold uppercase">
+                    <Film className="w-4 h-4" />
+                    <span>{lang === 'en' ? 'Creator Studio Suite' : 'ক্রিয়েটর স্টুডিও'}</span>
+                  </div>
+                  <h3 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+                    {lang === 'en' ? 'Audio & Video Creator Studio' : 'ভিডিও ও অডিও ক্রিয়েটর ওয়ার্কস্পেস'}
+                  </h3>
+                  <p className="text-sm text-slate-300 leading-relaxed">
+                    {lang === 'en'
+                      ? 'Denoise video audio, trim clips with millisecond precision, rip lossless 16-bit WAV tracks, craft SRT/VTT subtitles, design YouTube thumbnails, and pre-flight check social export limits.'
+                      : 'ভিডিওর ব্যাকগ্রাউন্ড নয়েজ দূর করুন, নিখুঁতভাবে ট্রিম করুন, লসলেস অডিও বের করুন, সাবটাইটেল তৈরি করুন এবং থাম্বনেল ডিজাইন করুন। সম্পূর্ণ ব্রাউজার-নেটিভ ও ১০০% নিরাপদ।'}
+                  </p>
+                  <div className="flex flex-wrap items-center gap-4 pt-2">
+                    <button
+                      onClick={() => handleNavigate('studio')}
+                      className="px-6 py-2.5 rounded-xl bg-gradient-to-r from-fuchsia-500 to-violet-600 hover:from-fuchsia-400 hover:to-violet-500 text-white font-bold text-xs shadow-lg shadow-fuchsia-500/25 flex items-center gap-2 cursor-pointer transition-all"
+                    >
+                      <Film className="w-4 h-4" />
+                      <span>{lang === 'en' ? 'Enter Creator Studio' : 'ক্রিয়েটর স্টুডিওতে যান'}</span>
+                      <ArrowRight className="w-4 h-4" />
+                    </button>
+                    <span className="text-xs text-slate-400 font-mono">
+                      7 Specialized Utilities • 100% In-Browser Privacy
+                    </span>
+                  </div>
+                </div>
+
+                <div className="relative shrink-0 flex items-center justify-center">
+                  <div className="w-28 h-28 sm:w-36 sm:h-36 rounded-3xl bg-slate-950 border border-fuchsia-500/40 p-6 flex items-center justify-center shadow-2xl shadow-fuchsia-500/20 group-hover:scale-105 transition-transform duration-300">
+                    <Film className="w-16 h-16 sm:w-20 sm:h-20 text-fuchsia-400 animate-pulse" />
+                  </div>
+                </div>
               </div>
             </section>
 

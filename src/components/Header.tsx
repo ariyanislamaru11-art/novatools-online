@@ -12,7 +12,9 @@ import {
   BookOpen, 
   ShieldCheck,
   ChevronRight,
-  Bot
+  Bot,
+  Film,
+  Leaf
 } from 'lucide-react';
 import { ToolDef } from '../types';
 
@@ -25,6 +27,8 @@ interface HeaderProps {
   onToggleTheme: () => void;
   favoritesCount: number;
   onOpenSearch: () => void;
+  isEcoMode?: boolean;
+  onToggleEcoMode?: () => void;
 }
 
 export const Header: React.FC<HeaderProps> = ({
@@ -36,16 +40,18 @@ export const Header: React.FC<HeaderProps> = ({
   onToggleTheme,
   favoritesCount,
   onOpenSearch,
+  isEcoMode = false,
+  onToggleEcoMode,
 }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const navItems = [
     { id: 'home', label: 'Home', labelBn: 'হোম' },
     { id: 'bot', label: 'Ariyan Bot', labelBn: 'আরিয়ান বট', isAi: true },
+    { id: 'studio', label: 'Creator Studio', labelBn: 'ক্রিয়েটর স্টুডিও', isStudio: true },
     { id: 'directory', label: 'All Tools', labelBn: 'সব টুলস' },
     { id: 'categories', label: 'Categories', labelBn: 'ক্যাটাগরি' },
     { id: 'popular', label: 'Popular', labelBn: 'জনপ্রিয়' },
-    { id: 'guides', label: 'Guides', labelBn: 'গাইড' },
     { id: 'about', label: 'About', labelBn: 'আমাদের সম্পর্কে' },
   ];
 
@@ -101,10 +107,16 @@ export const Header: React.FC<HeaderProps> = ({
                 }`}
               >
                 {item.isAi && <Bot className="w-4 h-4 text-cyan-400" />}
+                {item.isStudio && <Film className="w-4 h-4 text-fuchsia-400" />}
                 <span>{lang === 'en' ? item.label : item.labelBn}</span>
                 {item.isAi && (
                   <span className="px-1 py-0.2 rounded text-[9px] font-mono font-bold bg-cyan-500/20 text-cyan-300 border border-cyan-500/30">
                     AI
+                  </span>
+                )}
+                {item.isStudio && (
+                  <span className="px-1 py-0.2 rounded text-[9px] font-mono font-bold bg-fuchsia-500/20 text-fuchsia-300 border border-fuchsia-500/30">
+                    STUDIO
                   </span>
                 )}
               </button>
@@ -170,6 +182,22 @@ export const Header: React.FC<HeaderProps> = ({
             {isDark ? <Sun className="w-4 h-4 text-amber-400" /> : <Moon className="w-4 h-4 text-cyan-400" />}
           </button>
 
+          {/* Eco Mode Switcher */}
+          {onToggleEcoMode && (
+            <button
+              onClick={onToggleEcoMode}
+              className={`p-2 rounded-xl border transition-all ${
+                isEcoMode
+                  ? 'border-emerald-500/40 bg-emerald-500/10 text-emerald-400'
+                  : 'border-slate-800 bg-slate-900 text-slate-400 hover:text-emerald-400 hover:border-slate-700'
+              }`}
+              aria-label="Toggle Eco Mode"
+              title={isEcoMode ? "Eco Mode: Active (Low CPU/GPU animations)" : "Eco Mode: Inactive (Click to reduce animations & GPU effects)"}
+            >
+              <Leaf className={`w-4 h-4 ${isEcoMode ? 'fill-emerald-400' : ''}`} />
+            </button>
+          )}
+
           {/* Mobile menu trigger */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -192,10 +220,16 @@ export const Header: React.FC<HeaderProps> = ({
             >
               <span className="flex items-center gap-2">
                 {item.isAi && <Bot className="w-4 h-4 text-cyan-400" />}
+                {item.isStudio && <Film className="w-4 h-4 text-fuchsia-400" />}
                 <span>{lang === 'en' ? item.label : item.labelBn}</span>
                 {item.isAi && (
                   <span className="px-1.5 py-0.5 rounded text-[10px] font-mono font-bold bg-cyan-500/20 text-cyan-300 border border-cyan-500/30">
                     AI
+                  </span>
+                )}
+                {item.isStudio && (
+                  <span className="px-1.5 py-0.5 rounded text-[10px] font-mono font-bold bg-fuchsia-500/20 text-fuchsia-300 border border-fuchsia-500/30">
+                    STUDIO
                   </span>
                 )}
               </span>
